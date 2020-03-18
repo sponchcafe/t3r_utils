@@ -294,7 +294,7 @@ def make_FRETBursts_object(header, data, routing=(2,1), fname='default'):
     try:
         import fretbursts as fb
     except ImportError:
-        print('Feature required fretbursts to be installed')
+        print('Error: Feature requires fretbursts to be installed.')
         return None
     
     d = fb.Data(
@@ -322,7 +322,7 @@ def inspect_t3r(path):
         import pandas as pd
         from ipywidgets import interact
     except ImportError:
-        print('Feature requires pandas and ipywidgets to be intalled')
+        print('Error: Feature requires pandas and ipywidgets to be installed.')
         return None
 
     header, data = load_t3r(path, silent=True)
