@@ -291,7 +291,11 @@ def make_FRETBursts_object(header, data, routing=(2,1), fname='default'):
     d : fretbursts.Data object
     '''
 
-    import fretbursts as fb
+    try:
+        import fretbursts as fb
+    except ImportError:
+        print('Feature required fretbursts to be installed')
+        return None
     
     d = fb.Data(
         ph_times_t = [np.array(data['timetag'], dtype='int64')],
@@ -314,8 +318,12 @@ def make_FRETBursts_object(header, data, routing=(2,1), fname='default'):
 
 def inspect_t3r(path):
 
-    import pandas as pd
-    from ipywidgets import interact
+    try:
+        import pandas as pd
+        from ipywidgets import interact
+    except ImportError:
+        print('Feature requires pandas and ipywidgets to be intalled')
+        return None
 
     header, data = load_t3r(path, silent=True)
     pd.set_option('display.max_rows', 50)
@@ -328,7 +336,7 @@ def inspect_t3r(path):
 
 def load_t3r_multi(*paths):
     '''TODO: Cached loading and packing of multiple files.'''
-    pass
+    raise NotImplementedError
 
 @lru_cache(16)
 def load_t3r_to_fretbursts_cached(path):
